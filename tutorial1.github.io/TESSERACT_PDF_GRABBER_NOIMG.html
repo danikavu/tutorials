@@ -11822,26 +11822,25 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">time</span>
-# Cropping broken down for extraction to DataFrame. 
-# This is better off done dynamically which will be shown below.
-# I needed to split Item No. from Description of goods so I cropped manually.
-# After that we extract the text using the image_to_string() function
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cropping broken down for extraction to DataFrame. </span>
+<span class="c1"># This is better off done dynamically which will be shown below.</span>
+<span class="c1"># I needed to split Item No. from Description of goods so I cropped manually.</span>
+<span class="c1"># After that we extract the text using the image_to_string() function</span>
 
-ITEMNO_cropped_image = image.crop((305, 1850, 700, 3300))
-ITEMNO_text = image_to_string(ITEMNO_cropped_image)
+<span class="n">ITEMNO_cropped_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="mi">305</span><span class="p">,</span> <span class="mi">1850</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">3300</span><span class="p">))</span>
+<span class="n">ITEMNO_text</span> <span class="o">=</span> <span class="n">image_to_string</span><span class="p">(</span><span class="n">ITEMNO_cropped_image</span><span class="p">)</span>
 
-GOODS_cropped_image = image.crop((700, 1850, 2200, 3300))
-GOODS_text = image_to_string(GOODS_cropped_image)
+<span class="n">GOODS_cropped_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="mi">700</span><span class="p">,</span> <span class="mi">1850</span><span class="p">,</span> <span class="mi">2200</span><span class="p">,</span> <span class="mi">3300</span><span class="p">))</span>
+<span class="n">GOODS_text</span> <span class="o">=</span> <span class="n">image_to_string</span><span class="p">(</span><span class="n">GOODS_cropped_image</span><span class="p">)</span>
 
-QUANTITY_cropped_image = image.crop((2400, 1850, 2800, 3300))
-QUANTITY_text = image_to_string(QUANTITY_cropped_image)
+<span class="n">QUANTITY_cropped_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="mi">2400</span><span class="p">,</span> <span class="mi">1850</span><span class="p">,</span> <span class="mi">2800</span><span class="p">,</span> <span class="mi">3300</span><span class="p">))</span>
+<span class="n">QUANTITY_text</span> <span class="o">=</span> <span class="n">image_to_string</span><span class="p">(</span><span class="n">QUANTITY_cropped_image</span><span class="p">)</span>
 
-GROSSWGT_cropped_image = image.crop((2800, 1850, 3400, 3300))
-GROSSWGT_text = image_to_string(GROSSWGT_cropped_image)
+<span class="n">GROSSWGT_cropped_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="mi">2800</span><span class="p">,</span> <span class="mi">1850</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="mi">3300</span><span class="p">))</span>
+<span class="n">GROSSWGT_text</span> <span class="o">=</span> <span class="n">image_to_string</span><span class="p">(</span><span class="n">GROSSWGT_cropped_image</span><span class="p">)</span>
 
-NETWGT_cropped_image = image.crop((3350, 1850, 3810, 3300))
-NETWGT_text = image_to_string(NETWGT_cropped_image)
+<span class="n">NETWGT_cropped_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="mi">3350</span><span class="p">,</span> <span class="mi">1850</span><span class="p">,</span> <span class="mi">3810</span><span class="p">,</span> <span class="mi">3300</span><span class="p">))</span>
+<span class="n">NETWGT_text</span> <span class="o">=</span> <span class="n">image_to_string</span><span class="p">(</span><span class="n">NETWGT_cropped_image</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12044,41 +12043,40 @@ NETWGT_text = image_to_string(NETWGT_cropped_image)
 <h2 id="This-script-below-is-dedicated-to-Giannis-Spiliopoulos-who-always-delivers-great-input-when-cooking-up-projects.">This script below is dedicated to Giannis Spiliopoulos who always delivers great input when cooking up projects.<a class="anchor-link" href="#This-script-below-is-dedicated-to-Giannis-Spiliopoulos-who-always-delivers-great-input-when-cooking-up-projects.">&#182;</a></h2>
 </div>
 </div>
-</div>
+</div><link rel="stylesheet" href="https://cdn.jupyter.org/notebook/5.1.0/style/style.min.css">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">time</span>
-# Automate the cropping part
-# Open PNG with cv2 module
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Automate the cropping part</span>
+<span class="c1"># Open PNG with cv2 module</span>
 
-img = cv2.imread(&#39;BLTEST.png&#39;, 0) # 0 means load the image in grayscale mode.
-# set our global threshold value. 100 worked fine for me but in the documentation they suggest 127. 
-# 255 is the max pixel value and last but not least I set 0 to as a style of thresholding
-ret, thresh = cv2.threshold(img, 100, 255, 0) 
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;BLTEST.png&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># 0 means load the image in grayscale mode.</span>
+<span class="c1"># set our global threshold value. 100 worked fine for me but in the documentation they suggest 127. </span>
+<span class="c1"># 255 is the max pixel value and last but not least I set 0 to as a style of thresholding</span>
+<span class="n">ret</span><span class="p">,</span> <span class="n">thresh</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> 
 
-# A contour is a curve joining all continious points. cv2.findContours takes 3 arguments.
-# First one is source image.
-# Second is contour retrieval mode.
-# Third is contour approximation method. And it outputs the contours and hierarchy. contours is a Python list of all the contours in the image. Each individual contour is a Numpy array of (x,y) coordinates of boundary points of the object.
-image, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) # find black lines 
+<span class="c1"># A contour is a curve joining all continious points. cv2.findContours takes 3 arguments.</span>
+<span class="c1"># First one is source image.</span>
+<span class="c1"># Second is contour retrieval mode.</span>
+<span class="c1"># Third is contour approximation method. And it outputs the contours and hierarchy. contours is a Python list of all the contours in the image. Each individual contour is a Numpy array of (x,y) coordinates of boundary points of the object.</span>
+<span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">hierarchy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">RETR_TREE</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span> <span class="c1"># find black lines </span>
 
-# So now we pick out the largest contours with a simple for loop. 
-# The borders we want are clearly the largest lines in the PNG so it should be easy to set a limit. 400 was good
-# Make a copy / grab the bounds / draw over the border lines / crop / save in given directory.  
-for num, large_countour_lines in enumerate(contours):
-    if len(large_countour_lines) &gt; 400:
-        img_copy = img.copy()
-        cnt= contours[num]
-        x,y,w,h = cv2.boundingRect(cnt)
-        cv2.drawContours(img_copy, [cnt], -1, color = (255, 255, 255), thickness = 10)
-        crop = img_copy[y:y+h,x:x+w]
-        cv2.imwrite(r&#39;C:\Users\Dani K\auto_crop\BLTEST_crop_{}.png&#39;.format(num),crop)
-        print(&#39;Succesfully saved BLTEST_crop_{}.png&#39;.format(num))
+<span class="c1"># So now we pick out the largest contours with a simple for loop. </span>
+<span class="c1"># The borders we want are clearly the largest lines in the PNG so it should be easy to set a limit. 400 was good</span>
+<span class="c1"># Make a copy / grab the bounds / draw over the border lines / crop / save in given directory.  </span>
+<span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">large_countour_lines</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">contours</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">large_countour_lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">400</span><span class="p">:</span>
+        <span class="n">img_copy</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">cnt</span><span class="o">=</span> <span class="n">contours</span><span class="p">[</span><span class="n">num</span><span class="p">]</span>
+        <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">boundingRect</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">drawContours</span><span class="p">(</span><span class="n">img_copy</span><span class="p">,</span> <span class="p">[</span><span class="n">cnt</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">thickness</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">crop</span> <span class="o">=</span> <span class="n">img_copy</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\Dani K\auto_crop\BLTEST_crop_</span><span class="si">{}</span><span class="s1">.png&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num</span><span class="p">),</span><span class="n">crop</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Succesfully saved BLTEST_crop_</span><span class="si">{}</span><span class="s1">.png&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
         
-# Finally apply image_to_text() on your cropped files.        
+<span class="c1"># Finally apply image_to_text() on your cropped files.        </span>
 </pre></div>
 
 </div>
