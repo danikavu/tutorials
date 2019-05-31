@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>TESSERACT_PDF_GRABBER_NOIMG</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>TESSERACT_PDF_GRABBER</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11781,6 +11781,7 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">pdf2image</span> <span class="k">import</span> <span class="n">convert_from_path</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span><span class="p">,</span><span class="n">ImageFilter</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pytesseract</span> 
 <span class="kn">from</span> <span class="nn">pytesseract</span> <span class="k">import</span> <span class="n">image_to_string</span>
@@ -11796,7 +11797,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Specify PDF and convert to PNG</span>
@@ -11847,52 +11848,35 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Wall time: 3.71 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Split text on \n (newline) and append results</span>
-
-<span class="n">ITEMNO</span> <span class="o">=</span> <span class="n">ITEMNO_text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># Convert string to list spliting per new line + O to 0 hack.</span>
-
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">global</span> <span class="n">ITEMNO</span><span class="p">,</span> <span class="n">GOODS</span><span class="p">,</span> <span class="n">QUANTITY</span><span class="p">,</span> <span class="n">GROSSWGT</span><span class="p">,</span> <span class="n">NETWGT</span> <span class="c1"># set our list&#39;s to become global variables</span>
+<span class="c1"># split string and convert to lists on &#39;\n&#39; aka newline.</span>
+<span class="n">ITEMNO</span> <span class="o">=</span> <span class="n">ITEMNO_text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># Not how this str replacement should be done but ok.</span>
 <span class="n">GOODS</span> <span class="o">=</span> <span class="n">GOODS_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">GOODS_GRAB</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">GOODS</span><span class="p">[</span><span class="mi">3</span><span class="p">:]:</span> 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">pass</span> 
-    <span class="k">else</span><span class="p">:</span> <span class="n">GOODS_GRAB</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        
 <span class="n">QUANTITY</span> <span class="o">=</span> <span class="n">QUANTITY_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">GROSSWGT</span> <span class="o">=</span> <span class="n">GROSSWGT_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">NETWGT</span> <span class="o">=</span> <span class="n">NETWGT_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="c1"># Create Dataframe for the final results.</span>
+<span class="c1"># add lists to list to put in a for loop, so we can clean unwanted values.</span>
+<span class="c1"># such as empty whitespaces.</span>
+<span class="n">category_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">ITEMNO</span><span class="p">,</span><span class="n">GOODS</span><span class="p">,</span><span class="n">QUANTITY</span><span class="p">,</span><span class="n">GROSSWGT</span><span class="p">,</span><span class="n">NETWGT</span><span class="p">]</span> 
 
-<span class="n">result_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;ITEM_NO&#39;</span><span class="p">:</span><span class="n">ITEMNO</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span>
-                          <span class="s1">&#39;GOODS&#39;</span><span class="p">:</span><span class="n">GOODS_GRAB</span><span class="p">,</span>
-                          <span class="s1">&#39;QUANTITY&#39;</span><span class="p">:</span><span class="n">QUANTITY</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span>
-                          <span class="s1">&#39;GROSS_WEIGHT&#39;</span><span class="p">:</span><span class="n">GROSSWGT</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span>
-                          <span class="s1">&#39;NET_WEIGHT&#39;</span><span class="p">:</span><span class="n">NETWGT</span><span class="p">[</span><span class="mi">2</span><span class="p">:]})</span>
+<span class="c1"># Do whats needed to be done in the for loop</span>
+<span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">categories</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">category_group</span><span class="p">):</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">categories</span> <span class="k">if</span> <span class="n">x</span><span class="p">]</span> <span class="c1"># this cleans blank items in list</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">categories</span><span class="p">[</span><span class="o">-</span><span class="mi">11</span><span class="p">:]</span> <span class="c1"># we take only last elements from the list </span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;ITEM_NO&#39;</span><span class="p">:</span><span class="n">win</span><span class="p">})</span>
+    <span class="k">elif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;GOODS&#39;</span><span class="p">:</span><span class="n">win</span><span class="p">})</span>
+    <span class="k">elif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">:</span> <span class="n">r3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;QUANTITY&#39;</span><span class="p">:</span><span class="n">win</span><span class="p">})</span>
+    <span class="k">elif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">3</span> <span class="p">:</span> <span class="n">r4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;GROSS_WEIGHT&#39;</span><span class="p">:</span><span class="n">win</span><span class="p">})</span>
+    <span class="k">elif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">4</span> <span class="p">:</span> <span class="n">r5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;NET_WEIGHT&#39;</span><span class="p">:</span><span class="n">win</span><span class="p">})</span>
+    
+<span class="n">result_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">r1</span><span class="p">,</span><span class="n">r2</span><span class="p">,</span><span class="n">r3</span><span class="p">,</span><span class="n">r4</span><span class="p">,</span><span class="n">r5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># merge dataframes to one.</span>
 <span class="n">result_pd</span> <span class="c1"># Results below. Pretty Lit.</span>
 </pre></div>
 
@@ -11979,7 +11963,7 @@ div#notebook {
     </tr>
     <tr>
       <th>5</th>
-      <td>MDUPC000Z</td>
+      <td>MDUPC0002</td>
       <td>C&amp;L LANZO CISTERN N0 FITTINGS</td>
       <td>321</td>
       <td>3,531.00</td>
@@ -11995,7 +11979,7 @@ div#notebook {
     </tr>
     <tr>
       <th>7</th>
-      <td>MDUPP000Z</td>
+      <td>MDUPP0002</td>
       <td>C&amp;L LANZO CLOSE COUPLED PAN</td>
       <td>49</td>
       <td>1,131.90</td>
@@ -12043,10 +12027,10 @@ div#notebook {
 <h2 id="This-script-below-is-dedicated-to-Giannis-Spiliopoulos-who-always-delivers-great-input-when-cooking-up-projects.">This script below is dedicated to Giannis Spiliopoulos who always delivers great input when cooking up projects.<a class="anchor-link" href="#This-script-below-is-dedicated-to-Giannis-Spiliopoulos-who-always-delivers-great-input-when-cooking-up-projects.">&#182;</a></h2>
 </div>
 </div>
-</div><link rel="stylesheet" href="https://cdn.jupyter.org/notebook/5.1.0/style/style.min.css">
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Automate the cropping part</span>
@@ -12101,7 +12085,6 @@ Succesfully saved BLTEST_crop_1156.png
 Succesfully saved BLTEST_crop_1614.png
 Succesfully saved BLTEST_crop_1652.png
 Succesfully saved BLTEST_crop_1900.png
-Wall time: 855 ms
 </pre>
 </div>
 </div>
