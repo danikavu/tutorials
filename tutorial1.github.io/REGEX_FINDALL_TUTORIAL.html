@@ -12300,10 +12300,10 @@ Try this on a huge mixed up text with IMO numbers.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now something for the emails. We now that all emails contain a '@' and '.somthing' in the end
-Lets build the regex. 
-Emails go as some characters sto '\w+' followed by a '@', some more characters '\w+' a '.' and finally more characters '\w+'
-All together : '\w+@\w+.\w+'</p>
+<p>Now something for the emails. We know that all emails contain a '@' and '.somthing' in the end.</p>
+<p>Lets build the regex.</p>
+<p>Emails go as some characters sto '\w+' followed by a '@', some more characters '\w+' a '.' and finally more characters '\w+'</p>
+<p>All together : '\w+@\w+.\w+'</p>
 
 </div>
 </div>
@@ -12393,14 +12393,14 @@ Regex Remix 1 : '\w+.\w+@\w+.\w+'</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ye we got the MT emails in sacrifice of the google one. Thats because it was built based on the MT email structure.
-To catch all emails we would have to make a generic regex using the square brackets []. 
-Whatever you put in them will be the desired characters
-We want alphanumericals and these punctuations (.-<em>)
-This is how we build. Open brackets and put inside [] :
-[alphanumericals(\w) dot(.) underscore(\</em>) dash(-)]+ @ [alphanumericals(\w) dot(.)]+
-The '+' is added outside the brackets, which means it doesnt care about the order of characters.
-Regex Supreme Remix : '[\w._-]+@[\w.]+'</p>
+<p>Ye we got the MT emails in sacrifice of the google one. Thats because it was built based on the MT email structure.</p>
+<p>To catch all emails we would have to make a generic regex using the square brackets [].</p>
+<p>Whatever you put in them will be the desired characters</p>
+<p>We want alphanumericals and these punctuations (.-_)</p>
+<p>This is how we build. Open brackets and put inside [] :</p>
+<p>[alphanumericals(\w) dot(.) underscore(_) dash(-)]+ @ [alphanumericals(\w) dot(.)]+</p>
+<p>The '+' is added outside the brackets, which means it doesnt care about the order of characters.</p>
+<p>Regex Supreme Remix : '[\w._-]+@[\w.]+'</p>
 
 </div>
 </div>
