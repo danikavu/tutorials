@@ -12295,10 +12295,19 @@ Try this on a huge mixed up text with IMO numbers.</p>
 </div>
 </div>
 
-</div>Now something for the emails. We now that all emails contain a '@' and '.somthing' in the end
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now something for the emails. We now that all emails contain a '@' and '.somthing' in the end
 Lets build the regex. 
 Emails go as some characters sto '\w+' followed by a '@', some more characters '\w+' a '.' and finally more characters '\w+'
-All together : '\w+@\w+\.\w+'
+All together : '\w+@\w+.\w+'</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -12379,14 +12388,23 @@ Regex Remix 1 : '\w+.\w+@\w+.\w+'</p>
 </div>
 </div>
 
-</div>Ye we got the MT emails in sacrifice of the google one. Thats because it was built based on the MT email structure.
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ye we got the MT emails in sacrifice of the google one. Thats because it was built based on the MT email structure.
 To catch all emails we would have to make a generic regex using the square brackets []. 
 Whatever you put in them will be the desired characters
-We want alphanumericals and these punctuations (.-_)
+We want alphanumericals and these punctuations (.-<em>)
 This is how we build. Open brackets and put inside [] :
-[alphanumericals(\w) dot(\.) underscore(\_) dash(\-)]+ @ [alphanumericals(\w) dot(\.)]+
+[alphanumericals(\w) dot(.) underscore(\</em>) dash(-)]+ @ [alphanumericals(\w) dot(.)]+
 The '+' is added outside the brackets, which means it doesnt care about the order of characters.
-Regex Supreme Remix : '[\w\.\_\-]+@[\w\.]+'
+Regex Supreme Remix : '[\w._-]+@[\w.]+'</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
