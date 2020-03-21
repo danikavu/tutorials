@@ -11777,6 +11777,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot; First we import this God-Like library. &quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot; This library should be installed by default. If not type &#39;pip install regex&#39; in your terminal&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">re</span> 
 </pre></div>
 
@@ -11850,7 +11851,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="n">example_1</span><span class="p">))</span> <span class="c1"># @</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># re.findall() functions takes your string input between apostrophes and the text to search it for.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="n">example_1</span><span class="p">))</span> <span class="c1"># @</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;vessel&#39;</span><span class="p">,</span> <span class="n">example_1</span><span class="p">))</span> <span class="c1"># vessel</span>
 </pre></div>
 
@@ -11939,8 +11941,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Regular-Expression-Basics">Regular Expression Basics<a class="anchor-link" href="#Regular-Expression-Basics">&#182;</a></h3><p>We use these to build generic text parsers. They represent a category of strings.
-Create a dictionary with the regex and explanation next to it.</p>
+<h3 id="Regular-Expression-Basics">Regular Expression Basics<a class="anchor-link" href="#Regular-Expression-Basics">&#182;</a></h3><p>We use these to build generic text patterns. They represent a category of strings.
+First we create a dictionary with the regex and it's meaning as the value.</p>
 
 </div>
 </div>
@@ -11960,7 +11962,7 @@ Create a dictionary with the regex and explanation next to it.</p>
 <span class="p">}</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Plus some good to know Expressions. I will use all of them.</span>
+<span class="sd">Plus some good to know Expressions. I will use all of them in this script.</span>
 <span class="sd">    &#39;\b&#39; = Word bound</span>
 <span class="sd">    &#39;+&#39;  = Return a sequence</span>
 <span class="sd">    &#39;{}&#39; = Brackets to specify lenght of string</span>
@@ -12021,18 +12023,9 @@ Create a dictionary with the regex and explanation next to it.</p>
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The above stuff is not very useful lets say for now so..
-We shall get the IMO numbers if any exist, because thats the only thing that matters to me.
-We will apply using the regexes from the dictionary we made before.</p>
-
-</div>
-</div>
-</div>
+</div>The above results are not very useful lets say for now so..
+We shall get the IMO numbers if any exist, because those are the only things that matter to me.
+Doing so we can apply the regexes from the dictionary we made before.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -12300,11 +12293,7 @@ Try this on a huge mixed up text with IMO numbers.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now something for the emails. We know that all emails contain a '@' and '.somthing' in the end.</p>
-<p>Lets build the regex.</p>
-<p>Emails go as some characters sto '\w+' followed by a '@', some more characters '\w+' a '.' and finally more characters '\w+'</p>
-<p>All together : '\w+@\w+.\w+'</p>
-
+<h1 id="Get-Emails">Get Emails<a class="anchor-link" href="#Get-Emails">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12312,7 +12301,11 @@ Try this on a huge mixed up text with IMO numbers.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Get-Emails">Get Emails<a class="anchor-link" href="#Get-Emails">&#182;</a></h1>
+<p>Now onto the emails. We know that all emails contain a '@' and '.somthing' in the end.</p>
+<p>Lets build the regex.</p>
+<p>Emails have some characters in the beginning '\w+' followed by a '@', and then more characters '\w+' a full stop punctuation '.' and finally some more characters '\w+'</p>
+<p>All together : '\w+@\w+.\w+'</p>
+
 </div>
 </div>
 </div>
@@ -12321,7 +12314,7 @@ Try this on a huge mixed up text with IMO numbers.</p>
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;\w+@\w+\.\w+&#39;</span><span class="p">,</span> <span class="n">example_1</span><span class="p">))</span> <span class="c1"># Note that the &#39;.&#39; must have a \ in front or else it is considered as a joker.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;\w+@\w+\.\w+&#39;</span><span class="p">,</span> <span class="n">example_1</span><span class="p">))</span> <span class="c1"># Note that the &#39;.&#39; must have a \ in front or else it is considered a wildcard.</span>
 </pre></div>
 
 </div>
@@ -12351,9 +12344,10 @@ Try this on a huge mixed up text with IMO numbers.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>These results are half good. The regex returned only the second part of the first part of the email.
-The first names are missing! We need to add tricks in front of our regex. A '\w+' for the name and a '.'
-Regex Remix 1 : '\w+.\w+@\w+.\w+'</p>
+<p>These results are half good. The regex returned only the second part of the first part of the email.</p>
+<p>Unfortunately the first names are missing! We need to add some tricks in front of our regex to make this work.</p>
+<p>A character seuquence'\w+' for the name and a full stop punctuation '.'</p>
+<p>Regex Remix 1 : '\w+.\w+@\w+.\w+'</p>
 
 </div>
 </div>
@@ -12396,11 +12390,11 @@ Regex Remix 1 : '\w+.\w+@\w+.\w+'</p>
 <p>Ye we got the MT emails in sacrifice of the google one. Thats because it was built based on the MT email structure.</p>
 <p>To catch all emails we would have to make a generic regex using the square brackets [].</p>
 <p>Whatever you put in them will be the desired characters</p>
-<p>We want alphanumericals and these punctuations (.-_)</p>
-<p>This is how we build. Open brackets and put inside [] :</p>
-<p>[alphanumericals(\w) dot(.) underscore(_) dash(-)]+ @ [alphanumericals(\w) dot(.)]+</p>
+<p>From what I have seen so far we are interested in alphanumericals and these punctuations (.-_)</p>
+<p>To create such a regex we need to use the open brackets and put the characters of interest inside [] :</p>
+<p>[alphanumericals(\w) full stop punctuation(.) underscore(_) dash(-)]+ @ [alphanumericals(\w) full stop punctuation(.)]+</p>
 <p>The '+' is added outside the brackets, which means it doesnt care about the order of characters.</p>
-<p>Regex Supreme Remix : '[\w._-]+@[\w.]+'</p>
+<p>At last we can release the Regex Supreme Remix : '[\w._-]+@[\w.]+'</p>
 
 </div>
 </div>
