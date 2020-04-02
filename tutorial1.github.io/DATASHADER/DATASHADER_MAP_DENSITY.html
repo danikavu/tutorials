@@ -13119,7 +13119,7 @@ div#notebook {
                     <span class="n">plot_height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
     <span class="n">agg</span> <span class="o">=</span> <span class="n">cvs</span><span class="o">.</span><span class="n">points</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">agg</span>
-<span class="c1"># Image Rendering</span>
+<span class="c1"># Image Rendering. Change the color pallete here on the cmap variable.</span>
 <span class="k">def</span> <span class="nf">shader_func</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shade</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">bmy</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">span</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">img</span>
